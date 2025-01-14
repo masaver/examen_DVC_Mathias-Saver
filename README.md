@@ -1,4 +1,4 @@
-# Examen DVC et Dagshub
+# DVC & DagsHub Exam
 This repo contains my solution for the DVC & DagsHub exam.
 The tree/folder structure of this repo is as follows:
 ```bash       
