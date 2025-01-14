@@ -1,4 +1,3 @@
-[core]
-    remote = dagshub-storage
 ['remote "origin"']
-    url = https://dagshub.com/masaver/exam_DVC_Mathias-Saver.dvc
+    url = s3://dvc
+    endpointurl = https://dagshub.com/nom_utilisateur/Template_MLOps_accidents.s3

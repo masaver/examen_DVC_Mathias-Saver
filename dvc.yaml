@@ -46,4 +46,5 @@ stages:
     outs:
     - ./data/processed_data/y_test_preds.csv
     - ./data/processed_data/y_train_preds.csv
+    metrics: 
     - ./metrics/metrics.json
