@@ -14,6 +14,7 @@ stages:
   normalization:
     cmd: python ./src/data/02_data_normalization.py
     deps:
+    - ./src/data/02_data_normalization.py
     - ./data/processed_data/X_test.csv
     - ./data/processed_data/X_train.csv
     outs:
@@ -22,12 +23,15 @@ stages:
 
   params_grid_def:
     cmd: python ./src/data/03_params_grid.py
+    deps:
+    - ./src/data/03_params_grid.py
     outs:
     - ./models/param_grid.pkl
 
   model_training:
     cmd: python ./src/data/04_model_training.py
     deps:
+    - ./src/data/04_model_training.py
     - ./models/param_grid.pkl
     - ./data/processed_data/X_test_scaled.csv
     - ./data/processed_data/X_train_scaled.csv
@@ -39,6 +43,7 @@ stages:
   model_evaluation:
     cmd: python ./src/data/05_model_evaluation.py
     deps:
+    - ./src/data/05_model_evaluation.py
     - ./data/processed_data/X_test_scaled.csv
     - ./data/processed_data/X_train_scaled.csv
     - ./data/processed_data/y_test.csv
