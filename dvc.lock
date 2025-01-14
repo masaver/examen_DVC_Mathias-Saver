@@ -79,35 +79,3 @@ stages:
       hash: md5
       md5: 3a6f04abeffee05b2faef7e36b6049ba
       size: 11401513
-  model_evaluation:
-    cmd: python ./src/data/05_model_evaluation.py
-    deps:
-    - path: ./data/processed_data/X_test_scaled.csv
-      hash: md5
-      md5: 7a2c057d22ae991d0c74a51db921e5b7
-      size: 58361
-    - path: ./data/processed_data/X_train_scaled.csv
-      hash: md5
-      md5: c40b8b72172a3f3058370caa3bae0a2a
-      size: 233497
-    - path: ./data/processed_data/y_test.csv
-      hash: md5
-      md5: 97fe04fe943e54e4576b029310f03071
-      size: 13860
-    - path: ./data/processed_data/y_train.csv
-      hash: md5
-      md5: 6c6ab4a00e681c2058d2eb3a7fd00eb5
-      size: 54897
-    outs:
-    - path: ./data/processed_data/y_test_preds.csv
-      hash: md5
-      md5: 0cd3b0b53381a921d3a58dbf1ad2a390
-      size: 20617
-    - path: ./data/processed_data/y_train_preds.csv
-      hash: md5
-      md5: 92d2cfa03dcdac7a58bd1da1bd8cc7d9
-      size: 81967
-    - path: ./metrics/metrics.json
-      hash: md5
-      md5: 335e37121c5c8391bd5dad900b921a52
-      size: 131

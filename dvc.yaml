@@ -28,6 +28,7 @@ stages:
   model_training:
     cmd: python ./src/data/04_model_training.py
     deps:
+    - ./models/param_grid.pkl
     - ./data/processed_data/X_test_scaled.csv
     - ./data/processed_data/X_train_scaled.csv
     - ./data/processed_data/y_test.csv

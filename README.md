@@ -13,8 +13,31 @@ Dans ce dépôt vous trouverez l'architecture proposé pour mettre en place la s
 │   ├── src       
 │   └── README.md.py       
 ```
-N'hésitez pas à rajouter les dossiers ou les fichiers qui vous semblent pertinents.
+List of pipeline stages:
+1. **Data Splitting**: `dvc stage add -n data_split \
+  -d ./src/data/01_data_splitting.py \
+  -d ./data/raw_data/raw.csv \
+  -o ./data/processed_data/X_train.csv \
+  -o ./data/processed_data/X_test.csv \
+  -o ./data/processed_data/y_train.csv \
+  -o ./data/processed_data/y_test.csv \
+  python ./src/data/01_data_splitting.py`
 
-Vous devez dans un premier temps *Fork* le repo et puis le cloner pour travailler dessus. Le rendu de cet examen sera le lien vers votre dépôt sur DagsHub. Faites attention à bien mettre https://dagshub.com/licence.pedago en tant que colaborateur avec des droits de lecture seulement pour que ce soit corrigé.
+2. **Data Normalization**: `dvc stage add -n normalization \
+  -d ./data/processed_data/X_train.csv \
+  -d ./data/processed_data/X_test.csv \
+  -o ./data/processed_data/X_train_scaled.csv \
+  -o ./data/processed_data/X_test_scaled.csv \
+  python ./src/data/02_data_normalization.py`
 
-Vous pouvez télécharger les données à travers le lien suivant : https://datascientest-mlops.s3.eu-west-1.amazonaws.com/mlops_dvc_fr/raw.csv.
+3. **Params Grid Deffinition**: `dvc stage add -n params_grid_def \
+  -o ./models/param_grid.pkl \
+  python ./src/data/03_params_grid.py`
+
+4. **Model Training**: `dvc stage add -n model_training \
+-d ./data/processed_data/X_train_scaled.csv \
+-d ./data/processed_data/X_test_scaled.csv \
+-d ./data/processed_data/y_train.csv \
+-d ./data/processed_data/y_test.csv \
+-o ./models/cv_reg_model.pkl \
+python ./src/data/04_model_training.py`
