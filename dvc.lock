@@ -39,6 +39,10 @@ stages:
       hash: md5
       md5: dd181565fc768acbe0436651f7b7c938
       size: 238589
+    - path: ./src/data/02_data_normalization.py
+      hash: md5
+      md5: 94ff890b4270d247273e6463ba08f7aa
+      size: 1061
     outs:
     - path: ./data/processed_data/X_test_scaled.csv
       hash: md5
@@ -50,6 +54,11 @@ stages:
       size: 233497
   params_grid_def:
     cmd: python ./src/data/03_params_grid.py
+    deps:
+    - path: ./src/data/03_params_grid.py
+      hash: md5
+      md5: 6015d4d2024badf6074981dc18e41d23
+      size: 410
     outs:
     - path: ./models/param_grid.pkl
       hash: md5
@@ -74,8 +83,56 @@ stages:
       hash: md5
       md5: 6c6ab4a00e681c2058d2eb3a7fd00eb5
       size: 54897
+    - path: ./models/param_grid.pkl
+      hash: md5
+      md5: a4aa53acba5cfc98337230ee9a83767a
+      size: 156
+    - path: ./src/data/04_model_training.py
+      hash: md5
+      md5: 62d4c694be6848b01bef905bf5892e12
+      size: 1629
     outs:
     - path: ./models/cv_reg_model.pkl
       hash: md5
-      md5: 3a6f04abeffee05b2faef7e36b6049ba
+      md5: 2e07cea99f004a8529036b1b6c1ea3a8
       size: 11401513
+  model_evaluation:
+    cmd: python ./src/data/05_model_evaluation.py
+    deps:
+    - path: ./data/processed_data/X_test_scaled.csv
+      hash: md5
+      md5: 7a2c057d22ae991d0c74a51db921e5b7
+      size: 58361
+    - path: ./data/processed_data/X_train_scaled.csv
+      hash: md5
+      md5: c40b8b72172a3f3058370caa3bae0a2a
+      size: 233497
+    - path: ./data/processed_data/y_test.csv
+      hash: md5
+      md5: 97fe04fe943e54e4576b029310f03071
+      size: 13860
+    - path: ./data/processed_data/y_train.csv
+      hash: md5
+      md5: 6c6ab4a00e681c2058d2eb3a7fd00eb5
+      size: 54897
+    - path: ./models/cv_reg_model.pkl
+      hash: md5
+      md5: 2e07cea99f004a8529036b1b6c1ea3a8
+      size: 11401513
+    - path: ./src/data/05_model_evaluation.py
+      hash: md5
+      md5: e032fecd776762805e8629b13a00d701
+      size: 1682
+    outs:
+    - path: ./data/processed_data/y_test_preds.csv
+      hash: md5
+      md5: 0cd3b0b53381a921d3a58dbf1ad2a390
+      size: 20617
+    - path: ./data/processed_data/y_train_preds.csv
+      hash: md5
+      md5: 92d2cfa03dcdac7a58bd1da1bd8cc7d9
+      size: 81967
+    - path: ./metrics/metrics.json
+      hash: md5
+      md5: 335e37121c5c8391bd5dad900b921a52
+      size: 131

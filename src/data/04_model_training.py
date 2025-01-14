@@ -35,7 +35,7 @@ grid_search = GridSearchCV(
     scoring='neg_mean_squared_error',    # Use negative MSE as the scoring metric
     cv=5,                                # Number of cross-validation folds
     n_jobs=-1,                           # Use all available CPUs
-    verbose=2                            # Print progress
+    verbose=1                            # Print progress
 )
 
 # Fit the grid search to the training data
