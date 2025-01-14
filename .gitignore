@@ -1,3 +1,6 @@
-/venv
-/clean_data.csv
-/data
+# Ignore everything in data/
+data/*
+
+# Except raw_data folder and its .dvc files
+!data/raw_data/
+!data/raw_data/*.dvc
